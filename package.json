@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/oldgraybuzzard/rivet-connector#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.1.2"
+    "express": "^4.17.2",
+    "mongoose": "^6.1.4"
   }
 }

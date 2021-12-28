@@ -15,7 +15,10 @@ const userController = {
 
   //get one user by the id
   getUserById({ params }, res) {
-    User.findOne({ _id: process_params.id })
+    User.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { _id: params.userId },
+      { new: true, runValidators: true })
     .then(dbUserData => {
       //if no user, return 404
       if (!dbUserData) {
@@ -42,7 +45,7 @@ const userController = {
     })
     .catch(err => {
       console.log(err);
-      res.status(400).json(err;)
+      res.status(400).json(err);
     });
   },
 
