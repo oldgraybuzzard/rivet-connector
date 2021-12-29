@@ -1,15 +1,11 @@
-const res = require('express/lib/response');
-const { process_params } = require('express/lib/router');
+// const res = require('express/lib/response');
+// const { process_params } = require('express/lib/router');
 const { Thoughts, User } = require('../models');
 
 const thoughtsController = {
   // get all thoughts
   getAllThoughts(req, res) {
     Thoughts.find({})
-    .populate({
-      path: 'user',
-      select: '-__v'
-    })
     .select('-__v')
     .sort({ _id: -1 })
     .then(dbThoughtsData => res.json(dbThoughtsData))
@@ -59,23 +55,25 @@ const thoughtsController = {
   },
 
   //create a new thought
-  createThoughts({ params, body }, res) {
-    Thoughts.create(body)
-      .then(({_id}) => {
+  createThoughts(req, res) {
+    Thoughts.create(req.body)
+      .then((dbThoughtData) => {
         return User.findOneAndUpdate(
-          { username: body.username },
-          { $push: { thoughts: _id } },
+          { _id: req.body.userId },
+          { $push: { thoughts: dbThoughtData._id } },
           { new: true }
         );
       })
-      .then(dbUserData => {
+      .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No user found with this username!'});
-          return;
+          return res.status(404).json({ message: 'Thought has been created but no user with this id!' });
         }
-        res.json(dbUserData);
+        res.json({ message: 'Thought has been created!' });
       })
-      .catch(err => res.status(400).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 
   //delete a thought
@@ -96,8 +94,8 @@ const thoughtsController = {
 
   //add a reaction
   addReaction ({ params, body}, res) {
-    Thought.finsOneAndUpdate(
-      { _id: params.thoughtId },
+    Thoughts.findOneAndUpdate(
+      { _id: params.thoughtsId },
       { $push: { reactions: body } },
       { new: true, runValidators: true }
     )
@@ -114,16 +112,16 @@ const thoughtsController = {
     });
   },
 
-      //delete a Reaction
-      removeReaction({ params }, res) {
-        Thought.findOneAndUpdate(
-            { _id: params.thoughtId },
-            { $pull: { reactions: { reactionId: params.reactionId } } },
-            { new: true }
-        )
-        .then(dbThoughtData => res.json(dbThoughtData))
-        .catch(err => res.json(err));
-    },
+  //delete a Reaction
+  removeReaction({ params }, res) {
+    Thoughts.findOneAndUpdate(
+      { _id: params.thoughtsId },
+      { $pull: { reactions: { reactionId: params.reactionId } } },
+      { new: true }
+    )
+    .then(dbThoughtData => res.json(dbThoughtData))
+    .catch(err => res.json(err));
+    }
 }
 
 module.exports = thoughtsController;
