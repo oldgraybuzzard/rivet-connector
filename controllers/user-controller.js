@@ -18,7 +18,7 @@ const userController = {
 
   //get one user by the id with their thoughts
   getUserById({ params }, res) {
-    User.findOneAndUpdate({ _id: params.id })
+    User.findOne({ _id: params.id })
       .populate ({
         path: 'thoughts',
         select: '-__v'

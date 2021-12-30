@@ -31,6 +31,7 @@ Node.JS, NPM, Express, Mongoose
 
 ## Usage 🏆
 ### Video Walkthrough
+https://watch.screencastify.com/v/ap1KOoP9w8QSbZxj9eay
 
 ### Screenshots:
 * [Get Users](readme_assets/getUsers.PNG)
@@ -46,7 +47,7 @@ Node.JS, NPM, Express, Mongoose
 - Get user by ID:       `GET /api/users/:id`
 - Update a user:        `PUT /api/users/:id`
 - Delete a user:        `DELETE /api/users/:id`
-- Add a friend:         `PUT /api/users/:userId/friends/:friendId`
+- Add a friend:         `PUT /api/users/:userId/friends`
 - Delete a friend:      `DELETE /api/users/:userId/friends/:friendId`
 
 **Thought**
