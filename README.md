@@ -31,9 +31,11 @@ Node.JS, NPM, Express, Mongoose
 
 ## Usage 🏆
 ### Screenshots:
-
-
-
+[Get Users]()
+[Post Users]()
+[Get Thoughts]()
+[Post Thoughts]()
+[Put Reaction]()
 
 ## Endpoints 🧪
 **User**
