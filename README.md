@@ -12,10 +12,11 @@ Live Riveted!
 * [Dependencies](#dependencies)
 * [Links](#links)
 * [Usage](#usage)
-* [Contributors](#contributors)
-* [Features](#features)
+* [Screenshots](#screenshots)
 * [Endpoints](#endpoints)
-
+* [Endpoints](#endpoints)
+* [Features](#features)
+* [Contributors](#contributors)
 
 ## Dependencies 💻
 Make sure you have MongoDB installed on your machine (if you don't, follow the instructions on the [MongoDB Website](https://docs.mongodb.com/manual/installation/))
@@ -33,13 +34,6 @@ Node.JS, NPM, Express, Mongoose
 
 
 
-## Contributors 😃
-[oldgraybuzzard](https://github.com/oldgraybuzzard)
-* Contact me at k_felder@me.com
-
-
-## Features
-None 
 
 ## Endpoints 🧪
 **User**
@@ -62,3 +56,9 @@ None
 - Add a reaction:       `PUT /api/thoughts/:id/reactions`
 - Delete a reaction:    `DELETE /api/thoughts/:id/reactions`
 
+## Features
+None 
+
+## Contributors 😃
+[oldgraybuzzard](https://github.com/oldgraybuzzard)
+* Contact me at k_felder@me.com

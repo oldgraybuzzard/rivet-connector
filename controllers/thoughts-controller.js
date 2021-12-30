@@ -1,5 +1,3 @@
-// const res = require('express/lib/response');
-// const { process_params } = require('express/lib/router');
 const { Thoughts, User } = require('../models');
 
 const thoughtsController = {
@@ -17,15 +15,11 @@ const thoughtsController = {
 
   //get one thought by the id
   getThoughtsById({ params }, res) {
-    Thoughts.findOne({ _id: params.thoughtId })
-      .populate({
-        path: 'user',
-        select: '-__v'
-      })
+    Thoughts.findOne({ _id: params.id })
       .select('-__v')
       .sort({ _id: -1 })
       .then(dbThoughtsData => {
-        //if no thought, return 404
+        //if no thoughts, return 404
         if (!dbThoughtsData) {
         res.status(404).json({ message: 'No thought found with that id!' });
         return;
@@ -40,7 +34,7 @@ const thoughtsController = {
 
   // find a thought and update
   updateThoughts({ params, body }, res) {
-    Thoughts.findOneAndUpdate({ _id: process_params.id }, body, { new: true, runValidators: true })
+    Thoughts.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
     .then(dbThoughtsData => {
       if (!dbThoughtsData) {
         res.status(404).json({ message: 'No thought found with that id!' });
@@ -116,7 +110,7 @@ const thoughtsController = {
   removeReaction({ params }, res) {
     Thoughts.findOneAndUpdate(
       { _id: params.thoughtsId },
-      { $pull: { reactions: { reactionId: params.reactionId } } },
+      { $pull: { reaction: { reactionId: params.reactionId } } },
       { new: true }
     )
     .then(dbThoughtData => res.json(dbThoughtData))

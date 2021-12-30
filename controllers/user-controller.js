@@ -1,5 +1,3 @@
-// const res = require('express/lib/response');
-// const { process_params } = require('express/lib/router');
 const { User, Thoughts } = require('../models');
 
 const userController = {
