@@ -30,6 +30,8 @@ Node.JS, NPM, Express, Mongoose
 [Github Link](https://github.com/oldgraybuzzard/aluminum_rivet_life.git)
 
 ## Usage 🏆
+### Video Walkthrough
+
 ### Screenshots:
 * [Get Users](readme_assets/getUsers.PNG)
 * [Post Users](readme_assets/postUsers.PNG)
